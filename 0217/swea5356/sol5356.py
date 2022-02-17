@@ -1,0 +1,28 @@
+import sys
+
+sys.stdin = open('input.txt')
+
+T = int(input())
+
+def transpose(words):
+    max_len = 0
+    length = []
+
+    for word in words:
+        length.append(len(word))
+        if len(word) > max_len:
+            max_len = len(word)
+
+    res = ''
+    for q in range(max_len):
+        for w in range(5):
+            if length[w] > q:
+                res += words[w][q]
+    return res
+
+
+for tc in range(1, T + 1):
+    words = [list(input()) for _ in range(5)]
+    rlt = transpose(words)
+    print(f'#{tc} {rlt}')
+
