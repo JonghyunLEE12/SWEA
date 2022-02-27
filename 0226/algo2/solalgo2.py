@@ -8,24 +8,23 @@ T = int(input())
 dr = [-1,1,0,0]
 dc = [0,0,-1,1]
 def delta(arr):
-    p = 2
     sum_lst = []
     for r in range(len(arr)):
         for c in range(len(arr)):
+            p = arr[r][c]                # 중요
             sum_num = arr[r][c]
-            for i in range(1,p+1):
+            for i in range(1,p):
                 for k in range(len(dr)):
                     new_r = r + dr[k]*i
                     new_c = c + dc[k]*i
-
-                    if new_r < 0 or new_c < 0 or new_r >= N or new_c >=N:
-                        break
-                    else:
+                    if 0 <= new_r < N and 0<= new_c < N:
                         sum_num += arr[new_r][new_c]
             sum_lst.append(sum_num)
 
-    max_sum = max(sum_lst)
-    print(sum_lst)
+    max_sum = 0
+    for num in sum_lst:
+        if num > max_sum:
+            max_sum = num
     return max_sum
 
 def three(arr):
