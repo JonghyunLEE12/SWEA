@@ -1,49 +1,54 @@
-import sys
 import heapq
-input = sys.stdin.readline
+
+# 델타 : 상 하 좌 우
+dr = [-1,1,0,0]
+dc = [0,0,-1,1]
 
 
-dx = [1, -1, 0, 0]
-dy = [0, 0, 1, -1]
+def bfs(row,col):
+    queue = []
+    heapq.heappush(queue,(0,0,row,col))
+    while queue:
+        count_g,count_gr,r,c = heapq.heappop(queue)
+        # 꽃을 만나면 return
+        if matrix[r][c] == 'F':
+            print(count_g,count_gr)
+            return
+        for ii in range(4):
+            nr = r + dr[ii]
+            nc = c + dc[ii]
+            if 0 <= nr < n and 0 <= nc < m:
+                if visited[nr][nc] == 0:
+                    # 쓰레기 주변 count
+                    if matrix[nr][nc] == 'gr':
+                        heapq.heappush(queue,(count_g,count_gr+1,nr,nc))
+                    # 쓰레기 일때 count
+                    elif matrix[nr][nc] == 'g':
+                        heapq.heappush(queue,(count_g+1,count_gr,nr,nc))
+                    # 일반 길 일때는 no count
+                    else:
+                        heapq.heappush(queue,(count_g,count_gr,nr,nc))
+                    visited[nr][nc] = 1
 
-N, M = map(int, input().split())
-L, G = list(), list()
-for i in range(N):
-    L.append(list(input().rstrip()))
-    for j in range(M):
-        if L[i][j] == 'g':
-            G.append([i, j])
-        elif L[i][j] == 'S':
-            sx, sy = i, j
-        elif L[i][j] == 'F':
-            fx, fy = i, j
+#  row = > m, col = > n
+n,m = map(int,input().split())
+matrix = [list(input()) for _ in range(n)]
+visited = [[0]*m for _ in range(n)]
+start_r,start_c = 0,0
 
-for x, y in G:
-    for i in range(4):
-        tx = x + dx[i]
-        ty = y + dy[i]
-        if 0 <= tx < N and 0 <= ty < M and L[tx][ty] == '.':
-            L[tx][ty] = '#'
 
-Q = []
-heapq.heappush(Q, (0, 0, sx, sy))
-V = [[0] * (M) for _ in range(N)]
-V[sx][sy] = 1
+# 쓰레기 주변 표시 해주자
+for i in range(n):
+    for j in range(m):
+        if matrix[i][j] == 'g':
+            for k in range(4):
+                new_r = i + dr[k]
+                new_c = j + dc[k]
+                if 0 <= new_r < n and 0 <= new_c < m and matrix[new_r][new_c] == '.':
+                    matrix[new_r][new_c] = 'gr'
+        # 하는 김에 start 지점도
+        if matrix[i][j] == 'S':
+            start_r = i
+            start_c = j
 
-while Q:
-    a, b, x, y = heapq.heappop(Q)
-
-    for i in range(4):
-        tx = x + dx[i]
-        ty = y + dy[i]
-        if 0 <= tx < N and 0 <= ty < M and not V[tx][ty]:
-            V[tx][ty] = 1
-            if L[tx][ty] == '.':
-                heapq.heappush(Q, (a, b, tx, ty))
-            elif L[tx][ty] == '#':
-                heapq.heappush(Q, (a, b + 1, tx, ty))
-            elif L[tx][ty] == 'g':
-                heapq.heappush(Q, (a + 1, b, tx, ty))
-            else:
-                print(a, b)
-                break
+bfs(start_r,start_c)
