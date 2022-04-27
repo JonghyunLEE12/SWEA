@@ -1,6 +1,5 @@
 import heapq
-from pprint import pprint
-from collections import deque
+
 
 # Delta 상 하 좌 우
 dr = [-1,1,0,0]
