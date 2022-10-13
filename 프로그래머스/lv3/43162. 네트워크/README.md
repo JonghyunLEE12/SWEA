@@ -4,7 +4,7 @@
 
 ### 성능 요약
 
-메모리: 10.2 MB, 시간: 0.38 ms
+메모리: 10.4 MB, 시간: 0.21 ms
 
 ### 구분
 
@@ -53,7 +53,7 @@
 
 <p>예제 #1<br>
 아래와 같이 2개의 네트워크가 있습니다.<br>
-  <img src="https://grepp-programmers.s3.amazonaws.com/files/ybm/5b61d6ca97/cc1e7816-b6d7-4649-98e0-e95ea2007fd7.png" title="" alt="image0.png"></p>
+  <img src="https://grepp-programmers.s3.amazonaws.com/files/ybm/5b61d6ca97/cc1e7816-b6d7-4649-98e0-e95ea2007fd7.png" title="" alt="image0.png" id="exifviewer-img-1" exifid="-1737064152" oldsrc="https://grepp-programmers.s3.amazonaws.com/files/ybm/5b61d6ca97/cc1e7816-b6d7-4649-98e0-e95ea2007fd7.png"></p>
 
 <p>예제 #2<br>
 아래와 같이 1개의 네트워크가 있습니다.<br>
