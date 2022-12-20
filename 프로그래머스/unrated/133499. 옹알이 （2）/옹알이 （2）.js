@@ -1,19 +1,28 @@
-function solution(babbling) {
-    // 해당 풀이는 StarBlitz님의 풀이를 해석하였음을 미리 밝힙니다.
-    let count = 0;
-    // 연속되는 경우
-    let dup = ['ayaaya', 'yeye', 'woowoo', 'mama'];
-    while (babbling.length) {
-        let b = babbling.pop();
-        // 연속되는 발음은 패스
-        if (dup.some(v=>b.includes(v))) continue;
-        // 가능한 발음을 모두 숫자로 바꾸어
-        b = b.replaceAll('aya','1').replaceAll('ye','2').replaceAll('woo','3').replaceAll('ma','4');
-        // 숫자는 공백으로 변환
-        b = b.replace(/[1234]/g, '');
-        // 모두 가능한 발음의 경우 count++
-        if (b.length === 0) count++;
-    }
+// function solution(babbling) {
+//     let count = 0
+//     let dup = ['ayaaya', 'yeye', 'woowoo', 'mama']
+    
+//     function check(word) {
+//         for (let d of dup) {
+//             if (word.includes(d)) { return 1}
+//         }
+//         return 0
+//     }
+    
+//     while (babbling.length) {
+//         let word = babbling.pop()
+//         if (check(word) === 1) { count += 1 } 
+//     }
 
-    return count;
+//     return count;
+// }
+
+function solution(babbling) {
+    let answer = 0
+    
+    for (let bab of babbling){
+        if (/(aya|ye|woo|ma)\1+/g.test(bab)) continue
+        if (/^(aya|ye|woo|ma)+$/g.test(bab)) answer++
+    }
+    return answer++
 }
