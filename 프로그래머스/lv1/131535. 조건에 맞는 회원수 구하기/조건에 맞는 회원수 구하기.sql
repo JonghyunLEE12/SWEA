@@ -1,3 +1,7 @@
 -- 코드를 입력하세요
-SELECT count(user_id) AS 'USERS' from user_info
-WHERE AGE >= 20 and AGE <= 29 and YEAR(JOINED) = '2021'
+# SELECT count(user_id) AS 'USERS' from user_info
+# WHERE AGE >= 20 and AGE <= 29 and YEAR(JOINED) = '2021'
+
+SELECT COUNT(USER_ID) AS USERS
+FROM USER_INFO
+WHERE AGE >= 20 AND AGE <= 29 AND YEAR(JOINED) = '2021'
