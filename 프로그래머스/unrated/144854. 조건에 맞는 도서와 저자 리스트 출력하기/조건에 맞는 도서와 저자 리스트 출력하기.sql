@@ -1,8 +1,4 @@
 # -- 코드를 입력하세요
-# SELECT A.book_id,B.author_name,to_char(A.published_date,'yyyy-mm-dd')
-# FROM BOOK AS A JOIN AUTHOR AS B
-# ON A.author_id = B.author_id
-
 
 SELECT A.BOOK_ID, B.AUTHOR_NAME,
 DATE_FORMAT(A.PUBLISHED_DATE,'%Y-%m-%d') AS PUBLISHED_DATE
