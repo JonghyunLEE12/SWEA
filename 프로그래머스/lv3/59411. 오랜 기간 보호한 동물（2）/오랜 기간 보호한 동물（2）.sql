@@ -6,8 +6,25 @@
 # LIMIT 2
 
 
-SELECT A.animal_id, A.name
-FROM animal_ins A, animal_outs B
-WHERE A.animal_id = B.animal_id
-ORDER BY B.datetime - A.datetime DESC
+# SELECT A.animal_id, A.name
+# FROM animal_ins A, animal_outs B
+# WHERE A.animal_id = B.animal_id
+# ORDER BY B.datetime - A.datetime DESC
+# LIMIT 2
+
+
+SELECT INS.ANIMAL_ID, INS.NAME
+FROM ANIMAL_INS AS INS
+JOIN ANIMAL_OUTS AS OUTS
+ON OUTS.ANIMAL_ID = INS.ANIMAL_ID
+ORDER BY OUTS.DATETIME - INS.DATETIME DESC
 LIMIT 2
+
+
+
+
+
+
+
+
+
