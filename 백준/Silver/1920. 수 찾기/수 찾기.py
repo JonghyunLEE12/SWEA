@@ -1,21 +1,26 @@
-from sys import stdin, stdout
-n = stdin.readline()
-N = sorted(map(int,stdin.readline().split()))
-m = stdin.readline()
-M = map(int, stdin.readline().split())
+n = int(input())
+arr_n = sorted(list(map(int,input().split(' '))))
+m = int(input())
+arr_m = list(map(int,input().split(' ')))
 
-def binary(l, N, start, end):
+
+def Binary(num,arr_n,start,end):
+
     if start > end:
         return 0
-    m = (start+end)//2
-    if l == N[m]:
-        return 1
-    elif l < N[m]:
-        return binary(l, N, start, m-1)
-    else:
-        return binary(l, N, m+1, end)
 
-for l in M:
+    mid = (start + end) // 2
+
+    if num == arr_n[mid]:
+        return 1
+
+    elif num < arr_n[mid]:
+        return Binary(num,arr_n,start,mid-1)
+    else:
+        return Binary(num,arr_n,mid+1,end)
+
+
+for num in arr_m:
     start = 0
-    end = len(N)-1
-    print(binary(l,N,start,end))
+    end = n - 1
+    print(Binary(num,arr_n,start,end))
