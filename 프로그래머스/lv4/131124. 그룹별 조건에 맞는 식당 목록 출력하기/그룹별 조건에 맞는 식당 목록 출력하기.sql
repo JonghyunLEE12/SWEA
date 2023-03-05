@@ -1,0 +1,15 @@
+SELECT 
+        MEMBER_NAME
+        ,REVIEW_TEXT
+        ,date_format(REVIEW_DATE,"%Y-%m-%d") as REVIEW_DATE
+    FROM (
+        SELECT 
+            MEMBER_ID
+            ,COUNT(MEMBER_ID)
+            ,dense_rank() over(ORDER BY COUNT(MEMBER_ID) DESC) as ran
+        FROM REST_REVIEW
+        GROUP BY MEMBER_ID
+        ORDER BY COUNT(MEMBER_ID) DESC
+    ) A NATURAL JOIN MEMBER_PROFILE JOIN REST_REVIEW USING (MEMBER_ID)
+    WHERE A.ran =1
+    ORDER BY REVIEW_DATE,REVIEW_TEXT;
