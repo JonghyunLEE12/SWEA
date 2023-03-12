@@ -1,10 +1,10 @@
 # [level 0] 문자열안에 문자열 - 120908 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/120908) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/120908?language=python3) 
 
 ### 성능 요약
 
-메모리: 33.5 MB, 시간: 2.19 ms
+메모리: 10.3 MB, 시간: 0.00 ms
 
 ### 구분
 
@@ -25,6 +25,7 @@
 <ul>
 <li>1 ≤ <code>str1</code>의 길이 ≤ 100</li>
 <li>1 ≤ <code>str2</code>의 길이 ≤ 100</li>
+<li>문자열은 알파벳 대문자, 소문자, 숫자로 구성되어 있습니다.</li>
 </ul>
 
 <hr>
@@ -47,6 +48,11 @@
 <td>"pppp"</td>
 <td>2</td>
 </tr>
+<tr>
+<td>"AbcAbcA"</td>
+<td>"AAA"</td>
+<td>2</td>
+</tr>
 </tbody>
       </table>
 <hr>
@@ -63,6 +69,12 @@
 
 <ul>
 <li>"ppprrrogrammers" <code>str1</code>에 <code>str2</code>가 없으므로 2를 return합니다.</li>
+</ul>
+
+<p>입출력 예 #3</p>
+
+<ul>
+<li>"AbcAbcA" <code>str1</code>에 <code>str2</code>가 없으므로 2를 return합니다.</li>
 </ul>
 
 
