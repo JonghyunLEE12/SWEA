@@ -1,31 +1,25 @@
 function solution(k, m, score) {
     let answer = 0
-    if (score.length < m) {
-        return 0
-    }
+    score.sort((a,b) => b - a)
     
     let box = []
-    // box 에 m 개 씩 담아 포장
-    // 사과 상자의 가격은 가장 낮은 점수 p * m
-    
-    let score_rlt = []
-    score = score.sort((a,b) => b - a)
-    
-    for (let i of score) {
-        if (box.length === m){
-            let sum = Math.min(...box) * m
-            score_rlt.push(sum)
-            box = [i]
-        } else {
-            box.push(i)
-        }
+    let rlt = []
+    function cal(box) {
+        let min_num = Math.min(...box)
+        rlt.push(min_num*box.length)
     }
     
-    if (box.length === m) {
-        let plus = Math.min(...box) * m
-        score_rlt.push(plus)
+    for ( let apple of score) {
+        if ( box.length == m ) {
+            cal(box)
+            box = [apple]
+        } else { box.push(apple) }
     }
-    answer = score_rlt.reduce((a,b) => a+b)
+    
+    if ( box.length === m ) { cal(box) }
+    
+    answer = rlt.reduce((a,b) => a+b,0)
+    
     
     return answer
 }
