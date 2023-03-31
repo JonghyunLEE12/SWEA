@@ -8,8 +8,15 @@
 # ORDER BY ins.datetime
 
 
+# SELECT A.animal_id , A.name
+# FROM ANIMAL_INS AS A
+# LEFT JOIN ANIMAL_OUTS AS B
+# ON A.animal_id = B.animal_id
+# WHERE A.DATETIME > B.DATETIME
+# ORDER BY A.datetime
+
+
 SELECT A.animal_id , A.name
-# SELECT *
 FROM ANIMAL_INS AS A
 LEFT JOIN ANIMAL_OUTS AS B
 ON A.animal_id = B.animal_id
