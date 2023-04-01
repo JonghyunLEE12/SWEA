@@ -1,10 +1,10 @@
 # [unrated] 무인도 여행 - 154540 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/154540) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/154540?language=javascript) 
 
 ### 성능 요약
 
-메모리: 10.3 MB, 시간: 0.24 ms
+메모리: 33.5 MB, 시간: 0.35 ms
 
 ### 구분
 
@@ -61,11 +61,11 @@
 
 <p>위 문자열은 다음과 같은 지도를 나타냅니다.</p>
 
-<p><img src="https://user-images.githubusercontent.com/62426665/206862823-4633fbf1-c075-4d35-b577-26f504dcd332.png" title="" alt="image1" id="exifviewer-img-2" exifid="280106316" oldsrc="https://user-images.githubusercontent.com/62426665/206862823-4633fbf1-c075-4d35-b577-26f504dcd332.png"></p>
+<p><img src="https://user-images.githubusercontent.com/62426665/206862823-4633fbf1-c075-4d35-b577-26f504dcd332.png" title="" alt="image1" id="exifviewer-img-1" exifid="280106316" oldsrc="https://user-images.githubusercontent.com/62426665/206862823-4633fbf1-c075-4d35-b577-26f504dcd332.png"></p>
 
 <p>연결된 땅들의 값을 합치면 다음과 같으며</p>
 
-<p><img src="https://user-images.githubusercontent.com/62426665/209070615-ae568f20-cf06-4f88-8d4f-8e9861af2d36.png" title="" alt="image2" id="exifviewer-img-1" exifid="1871355785" oldsrc="https://user-images.githubusercontent.com/62426665/209070615-ae568f20-cf06-4f88-8d4f-8e9861af2d36.png"></p>
+<p><img src="https://user-images.githubusercontent.com/62426665/209070615-ae568f20-cf06-4f88-8d4f-8e9861af2d36.png" title="" alt="image2"></p>
 
 <p>이를 오름차순으로 정렬하면 [1, 1, 27]이 됩니다.</p>
 
@@ -73,7 +73,7 @@
 
 <p>위 문자열은 다음과 같은 지도를 나타냅니다.</p>
 
-<p><img src="https://user-images.githubusercontent.com/62426665/206863265-0a371c69-d4b5-411a-972f-bdc36b90c917.png" title="" alt="image3" id="exifviewer-img-3" exifid="-1077480171" oldsrc="https://user-images.githubusercontent.com/62426665/206863265-0a371c69-d4b5-411a-972f-bdc36b90c917.png"></p>
+<p><img src="https://user-images.githubusercontent.com/62426665/206863265-0a371c69-d4b5-411a-972f-bdc36b90c917.png" title="" alt="image3"></p>
 
 <p>섬이 존재하지 않기 때문에 -1을 배열에 담아 반환합니다.</p>
 
