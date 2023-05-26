@@ -1,6 +1,7 @@
 from collections import deque
 
 
+
 def solution(numbers,target):
     answer = 0
     queue = deque()
@@ -9,10 +10,14 @@ def solution(numbers,target):
     
     while queue:
         num,idx = queue.popleft()
+        
         if idx+1 == len(numbers):
             if num == target:
                 answer += 1
+        
         else:
             queue.append([num - numbers[idx+1],idx+1])
             queue.append([num + numbers[idx+1],idx+1])
+        
     return answer 
+
