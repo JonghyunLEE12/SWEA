@@ -1,20 +1,29 @@
-key_list = []
+
+n = 9
+
+
+
+dwarf_list = []
+
 for i in range(9):
-    key_list.append(int(input()))
+    dwarf_list.append(int(input()))
+
+total = sum(dwarf_list)
 faker = []
-total = sum(key_list)
-for i in range(len(key_list)):
-    for j in range(len(key_list)):
-        if key_list[i] == key_list[j]:
+for i in range(n):
+    for j in range(n):
+        if dwarf_list[i] == dwarf_list[j]:
             continue
-        elif total - (key_list[i]+key_list[j]) == 100:
-            faker.append(key_list[i])
-            faker.append(key_list[j])
+        elif total - (dwarf_list[i] + dwarf_list[j]) == 100:
+            faker.append(dwarf_list[i])
+            faker.append(dwarf_list[j])
     if len(faker) == 2:
         break
-faker = set(faker)
-for i in faker:
-    key_list.remove(i)
-key_list.sort()
-for i in key_list:
-    print(i)
+
+for dwarf in faker:
+    dwarf_list.remove(dwarf)
+
+dwarf_list.sort()
+
+for dwarf in dwarf_list:
+    print(dwarf)
