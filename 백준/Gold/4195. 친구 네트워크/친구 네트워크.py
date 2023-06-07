@@ -1,4 +1,18 @@
+'''
+2
+3
+Fred Barney
+Barney Betty
+Betty Wilma
+3
+Fred Barney
+Betty Wilma
+Barney Betty
+'''
+
+
 T = int(input())
+
 
 def find(target):
     if parents[target] == target:
@@ -6,25 +20,28 @@ def find(target):
     else:
         y = find(parents[target])
         parents[target] = y
-        return y 
+        return y
 
 
 def union(a,b):
+
     a = find(a)
     b = find(b)
 
-    if parents[a] != b:
-        parents[a] = b
-        number[b] += number[a]
+    if a != b:
+        parents[a] = b            
+        number[b] += number[a]          
     
     print(number[b])
 
 for tc in range(T):
     f = int(input())
 
-    parents, number = {},{}
+    parents , number = {} , {}
+
     for i in range(f):
         a,b = input().split(' ')
+
         if a not in parents:
             parents[a] = a
             number[a] = 1
@@ -32,5 +49,5 @@ for tc in range(T):
         if b not in parents:
             parents[b] = b
             number[b] = 1
-
+        
         union(a,b)
