@@ -1,56 +1,56 @@
-# def solution(distance, rocks, n):
-#     answer = 0
+def solution(distance, rocks, n):
+    answer = 0
     
-#     visited = [0]*len(rocks)
-#     result = []
-#     def binary(remove,rlt):
-#         new_rocks = []
-#         for rock in rocks:
-#             if rock in remove:
-#                 continue
-#             else:
-#                 new_rocks.append(rock)
+    visited = [0]*len(rocks)
+    result = []
+    def binary(remove,rlt):
+        new_rocks = []
+        for rock in rocks:
+            if rock in remove:
+                continue
+            else:
+                new_rocks.append(rock)
         
-#         dp = [0]*(distance+1)
-#         dp[0],dp[distance] = 1,1
+        dp = [0]*(distance+1)
+        dp[0],dp[distance] = 1,1
         
-#         for num in new_rocks:
-#             dp[num] = 1
+        for num in new_rocks:
+            dp[num] = 1
         
-#         start = 0
-#         end = 0
-#         for i in range(1,len(dp)):
-#             if dp[i] == 1:
-#                 end = i
-#                 rlt.append(end-start)
-#                 start = i
-#         result.append(min(rlt))
-#         return
+        start = 0
+        end = 0
+        for i in range(1,len(dp)):
+            if dp[i] == 1:
+                end = i
+                rlt.append(end-start)
+                start = i
+        result.append(min(rlt))
+        return
     
-#     def dfs(Remove,n,start):
-#         if len(Remove) == n:
-#             Remove.sort()
-#             rlt = []
-#             binary(Remove,rlt)
-#             return
-#         for i in range(start,len(rocks)):
-#             if visited[i] == 0:
-#                 visited[i] = 1
-#                 Remove.append(rocks[i])
-#                 dfs(Remove,n,i)
-#                 Remove.pop()
-#                 visited[i] = 0
+    def dfs(Remove,n,start):
+        if len(Remove) == n:
+            Remove.sort()
+            rlt = []
+            binary(Remove,rlt)
+            return
+        for i in range(start,len(rocks)):
+            if visited[i] == 0:
+                visited[i] = 1
+                Remove.append(rocks[i])
+                dfs(Remove,n,i)
+                Remove.pop()
+                visited[i] = 0
     
-#     Remove = []
-#     for i in range(len(rocks)):
-#         if visited[i] == 0:
-#             visited[i] = 1
-#             Remove.append(rocks[i])
-#             dfs(Remove,n,i)
-#             Remove.pop()
-#             visited[i] = 0
-#     answer = max(result)
-#     return answer
+    Remove = []
+    for i in range(len(rocks)):
+        if visited[i] == 0:
+            visited[i] = 1
+            Remove.append(rocks[i])
+            dfs(Remove,n,i)
+            Remove.pop()
+            visited[i] = 0
+    answer = max(result)
+    return answer
 
 
 
