@@ -11,7 +11,6 @@ def solution(genres, plays):
         music[idx].append(time)
     
     
-    
     total = {}
     
     for value in music.values():
@@ -20,8 +19,10 @@ def solution(genres, plays):
     for value in music.values():
         total[value[0]] += value[1]
     
+    
     total = list(total.items())
     total.sort(key = lambda x:x[1] , reverse = True)
+    
     
     rlt_dict = {}
     
@@ -30,13 +31,16 @@ def solution(genres, plays):
     
     
     for k,v in music.items():
+        
         rlt_dict[v[0]].append([k,v[1]])
 
-        
+    
+    
+    
     for k,v in rlt_dict.items():
         v.sort(key = lambda x:x[1],reverse = True)
-    
 
+    
     def ans(k,v):
         lst = []
         for i in v:
@@ -50,5 +54,4 @@ def solution(genres, plays):
     for k,v in rlt_dict.items():
         ans(k,v)
         
-
     return answer
