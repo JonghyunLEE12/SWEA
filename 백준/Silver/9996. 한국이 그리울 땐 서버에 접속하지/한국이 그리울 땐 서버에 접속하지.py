@@ -1,23 +1,15 @@
-'''
-3
-a*d
-abcd
-anestonestod
-facebook
-'''
-
 n = int(input())
-pattern = input().split("*")
-length = len(pattern[0]) + len(pattern[1])
+
+word = input().split('*')
+length = len(word[0]) + len(word[1])
 
 for _ in range(n):
-	file = input()
-	if length > len(file):
-		print("NE")
-	
-	else:
-		if pattern[0] == file[:len(pattern[0])] and pattern[1] == file[-len(pattern[1]):]:
-			print("DA")
-		else:
-			print("NE")
+    check = input()
+    if length > len(check):
+        print("NE")
     
+    else:
+        if word[0] == check[:len(word[0])] and word[1] == check[-len(word[1]):]:
+            print("DA")
+        else:
+            print("NE")
