@@ -1,35 +1,54 @@
+'''
+6 4
+0100
+1110
+1000
+0000
+0111
+0000
+'''
 from collections import deque
 
-# 델타 상 하 좌 우
+n,m = map(int,input().split(' '))
+matrix = [ list(map(int,input().rstrip(' '))) for _ in range(n)]
+visited = [[[0]*2 for _ in range(m)] for _ in range(n)]
+
+# 델타
 dr = [-1,1,0,0]
 dc = [0,0,-1,1]
 
-
 def bfs():
-    q = deque()
-    q.append([0, 0, 1])
-    visit = [[[0] * 2 for i in range(m)] for i in range(n)]
-    visit[0][0][1] = 1
-    while q:
-        a, b, w = q.popleft()
-        if a == n - 1 and b == m - 1:
-            return visit[a][b][w]
-        for i in range(4):
-            x = a + dr[i]
-            y = b + dc[i]
-            if 0 <= x < n and 0 <= y < m:
-                if matrix[x][y] == 1 and w == 1:
-                    visit[x][y][0] = visit[a][b][1] + 1
-                    q.append([x, y, 0])
-                elif matrix[x][y] == 0 and visit[x][y][w] == 0:
-                    visit[x][y][w] = visit[a][b][w] + 1
-                    q.append([x, y, w])
+    queue = deque()
+    queue.append([0,0,1])
+    visited[0][0][1] = 1
+
+    while queue:
+        row,col,t = queue.popleft()
+
+        if row == (n-1) and col == (m-1):
+            return visited[row][col][t]
+
+        for i in range(len(dr)):
+
+            nr = row + dr[i]
+            nc = col + dc[i]
+
+            if 0 <= nr < n and 0 <= nc < m:
+                if matrix[nr][nc] == 1 and t == 1:
+                    visited[nr][nc][0] += visited[row][col][1] + 1
+                    queue.append([nr,nc,0])
+                
+                elif matrix[nr][nc] == 0 and visited[nr][nc][t] == 0:
+                    visited[nr][nc][t] += visited[row][col][t] + 1
+                    queue.append([nr,nc,t])
+    
     return -1
+ 
 
 
-
-n, m = map(int, input().split())
-matrix = []
-for i in range(n):
-    matrix.append(list(map(int, list(input().strip()))))
 print(bfs())
+
+
+
+
+
