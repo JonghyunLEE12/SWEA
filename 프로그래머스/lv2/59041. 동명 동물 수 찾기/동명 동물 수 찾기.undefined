@@ -6,8 +6,26 @@
 # order by name
 
 
-SELECT name , COUNT(name)
-FROM animal_ins
-GROUP BY name
-HAVING COUNT(name) >= 2
-ORDER BY name
+# SELECT name , COUNT(name)
+# FROM animal_ins
+# GROUP BY name
+# HAVING COUNT(name) >= 2
+# ORDER BY name
+
+
+
+SELECT NAME , COUNT(NAME) AS 'COUNT'
+FROM ANIMAL_INS
+GROUP BY NAME
+HAVING COUNT >= 2 
+ORDER BY NAME
+
+
+
+
+
+
+
+
+
+
