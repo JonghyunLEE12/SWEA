@@ -1,2 +1,6 @@
--- 코드를 입력하세요
-SELECT count(animal_id) from animal_ins
+# SELECT count(animal_id) AS count
+# from animal_ins
+
+
+SELECT COUNT(ANIMAL_ID) AS 'count'
+FROM ANIMAL_INS
