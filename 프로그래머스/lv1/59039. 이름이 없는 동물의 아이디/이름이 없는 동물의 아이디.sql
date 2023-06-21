@@ -1,3 +1,9 @@
--- 코드를 입력하세요
-SELECT animal_id FROM animal_ins
-WHERE name is null
+# -- 코드를 입력하세요
+# SELECT animal_id FROM animal_ins
+# WHERE name IS NULL
+
+
+SELECT ANIMAL_ID
+FROM ANIMAL_INS
+WHERE NAME IS NULL
+ORDER BY ANIMAL_ID
