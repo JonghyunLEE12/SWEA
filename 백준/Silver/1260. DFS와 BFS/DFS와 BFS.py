@@ -1,34 +1,60 @@
-n,m,v = map(int,input().split())
+'''
+4 5 1
+1 2
+1 3
+1 4
+2 4
+3 4
+'''
+from collections import deque
+
+n,m,start = map(int,input().split(' '))
 nodes = [[0]*(n+1) for _ in range(n+1)]
 
-for i in range(m):
-    a,b = map(int,input().split())
+for _ in range(m):
+    a,b = map(int,input().split(' '))
     nodes[a][b] = nodes[b][a] = 1
 
 
-dfs_stack = [0] * (n+1)
-def dfs(v):
-    dfs_stack[v] = 1
-    print(v,end=' ')
+dfs_visited = [0]*(n+1)
+
+def dfs(start):
+
+    dfs_visited[start] = 1
+
+    print(start , end=' ')
+    
     for i in range(n+1):
-        if dfs_stack[i] == 0 and nodes[i][v] == 1:
-            dfs(i)
-dfs(v)
+        if dfs_visited[i] == 0:
+            if nodes[start][i] == 1:
+                dfs(i)
+            
 
-
-from collections import deque
-bfs_stack = [0] * (n+1)
-
-def bfs(v):
-    bfs_stack[v] = 1
-    queue = deque()
-    queue.append(v)
-    while queue:
-        a = queue.popleft()
-        print(a,end=' ')
-        for i in range(n+1):
-            if bfs_stack[i] == 0 and nodes[i][a]:
-                queue.append(i)
-                bfs_stack[i] = 1
+dfs(start)
 print()
-bfs(v)
+
+
+bfs_visited = [0] * (n+1)
+
+def bfs(start):
+    queue = deque()
+    queue.append(start)
+
+    bfs_visited[start] = 1
+
+    while queue:
+
+
+        number = queue.popleft()
+
+        print(number, end = ' ')
+
+        for i in range(n+1):
+            if bfs_visited[i] == 0:
+                if nodes[number][i] == 1:
+                    queue.append(i)
+                    bfs_visited[i] = 1
+        
+        
+
+bfs(start)
