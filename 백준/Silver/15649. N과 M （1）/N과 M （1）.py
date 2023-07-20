@@ -1,16 +1,29 @@
-n,m = map(int,input().split(' '))
-visited = [0]*n
-rlt = []
+'''
+4 2
+'''
 
-def dfs():
-    if len(rlt) == m:
-        print(*rlt)
+n,m = map(int,input().split(' '))
+
+numbers = [x for x in range(1,n+1)]
+visited = [0]*n
+
+def dfs(arr):
+    if len(arr) == m:
+        print(*arr)
         return
     
-    for i in range(1,n+1):
-        if i not in rlt:
-            rlt.append(i)
-            dfs()
-            rlt.pop()
+    for i in range(n):
+        if visited[i] == 0:
+            arr.append(numbers[i])
+            visited[i] = 1
+            dfs(arr)
+            visited[i] = 0
+            arr.pop()
 
-dfs()
+for i in range(n):
+    if visited[i] == 0:
+        arr = [numbers[i]]
+        visited[i] = 1
+        dfs(arr)
+        visited[i] = 0
+        arr.pop()
