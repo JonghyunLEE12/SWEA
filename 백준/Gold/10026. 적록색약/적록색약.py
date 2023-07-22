@@ -1,3 +1,12 @@
+'''
+5
+RRRBB
+GGBBB
+BBBRR
+BBRRR
+RRRRR
+'''
+
 from collections import deque
 
 
@@ -19,7 +28,7 @@ def bfs(row,col):
                     queue.append((nr,nc))
 
 n = int(input())
-matrix = [list(input()) for _ in range(n)]
+matrix = [ list(map(str,input().rstrip(' '))) for _ in range(n)]
 visited = [[0]*n for _ in range(n)]
 # 일반인
 cnt = 0
