@@ -1,63 +1,56 @@
+import sys
+input = sys.stdin.readline
 from collections import deque
 
-r, c = map(int, input().split())
-graph = []
+dr = (-1, 1, 0, 0)
+dc = (0, 0, -1, 1)
 
-q_j = deque()
-q_f = deque()
+def fbfs():
+    while fq:
+        r, c = fq.popleft()
+        for d in range(4):
+            nr = r + dr[d]
+            nc = c + dc[d]
+            if not (0 <= nr < R and 0 <= nc < C):
+                continue
+            if maze[nr][nc] == "#" or fire[nr][nc]:
+                continue
+            fire[nr][nc] = fire[r][c] + 1
+            fq.append((nr, nc))
 
-visited_j = [[0] * c for _ in range(r)]
-visited_f = [[0] * c for _ in range(r)]
+def hbfs():
+    while hq:
+        r, c = hq.popleft()
+        for d in range(4):
+            nr = r + dr[d]
+            nc = c + dc[d]
+            if not (0 <= nr < R and 0 <= nc < C):
+                print(human[r][c])
+                return
+            if human[nr][nc] or maze[nr][nc] == "#":
+                continue
+            if fire[nr][nc] and human[r][c] + 1 >= fire[nr][nc]:
+                continue
+            human[nr][nc] = human[r][c] + 1
+            hq.append((nr, nc))
+    print("IMPOSSIBLE")
+    return
 
-move = [
-    [1, 0],
-    [-1, 0],
-    [0, 1],
-    [0, -1]
-]
-
-for i in range(r):
-    temp = list(input())
-
-    for j in range(len(temp)):
-        if temp[j] == "J":
-            q_j.append((i, j))
-            visited_j[i][j] = 1
-        
-        elif temp[j] == "F":
-            q_f.append((i, j))
-            visited_f[i][j] = 1
-        
-    graph.append(temp)
-
-def bfs():
-    while q_f:
-        x, y = q_f.popleft()
-
-        for i in range(4):
-            nx, ny = x + move[i][0], y + move[i][1]
-
-            if 0 <= nx < r and 0 <= ny < c:
-                if not visited_f[nx][ny] and graph[nx][ny] != "#":
-                    visited_f[nx][ny] = visited_f[x][y] + 1
-                    q_f.append((nx, ny))
-
-    while q_j:
-        x, y = q_j.popleft()
-
-        for i in range(4):
-            nx, ny = x + move[i][0], y + move[i][1]
-
-            if 0 <= nx < r and 0 <= ny < c:
-                if graph[nx][ny] != "#" and not visited_j[nx][ny]:
-                    if not visited_f[nx][ny] or visited_f[nx][ny] > visited_j[x][y] + 1:
-                        visited_j[nx][ny] = visited_j[x][y] + 1
-                        q_j.append((nx, ny))
-
-            else:
-                return visited_j[x][y]
-
-    
-    return "IMPOSSIBLE"
-
-print(bfs())
+# main
+R, C = map(int, input().split())
+maze = []
+hq = deque()
+fq = deque()
+human = [[0] * C for _ in range(R)]
+fire = [[0] * C for _ in range(R)]
+for i in range(R):
+    maze.append(list(input().strip()))
+    for j in range(C):
+        if maze[i][j] == "J":
+            hq.append((i, j))
+            human[i][j] = 1
+        elif maze[i][j] == "F":
+            fq.append((i, j))
+            fire[i][j] = 1
+fbfs()
+hbfs()
