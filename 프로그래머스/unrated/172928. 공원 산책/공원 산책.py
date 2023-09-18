@@ -1,21 +1,78 @@
 def solution(park, routes):
-    r,c,R,C = 0,0,len(park),len(park[0]) # r,c : S위치 / R,C : 보드경계
-    move = {"E":(0,1),"W":(0,-1),"S":(1,0),"N":(-1,0)}
-    for i,row in enumerate(park): # 시작점 찾기
-        if "S" in row:
-            r,c = i,row.find("S")
-            break
-
+    answer = []
+    
+    for r in range(len(park)):
+        for c in range(len(park[0])):
+            if park[r][c] == 'S':
+                start_r,start_c = r,c
+                copy_r,copy_c = r,c
+    
+    # 델타 상 하 좌 우
+    # 델타 북 남 서 동
+    
+    dr = [-1,1,0,0]
+    dc = [0,0,-1,1]
+    
+    def check(nr,nc):
+        if 0 <= nr < len(park) and 0 <= nc <len(park[0]):
+            if park[nr][nc] != 'X':
+                return True
+            else:
+                return False
+            
+        return False
+            
+    
+    print(start_r,start_c)
     for route in routes:
-        dr,dc = move[route[0]] # 입력받는 route의 움직임 방향
-        new_r,new_c = r,c # new_r,new_c : route 적용 후 위치
-        for _ in range(int(route[2])): 
-            # 한칸씩 움직이면서, 보드 안쪽이고 "X"가 아니라면 한칸이동
-            if 0<=new_r+dr<R and 0<=new_c+dc<C and park[new_r+dr][new_c+dc] != "X":
-                new_r,new_c = new_r+dr,new_c+dc
-            else: # 아니라면 처음 위치로
-                new_r,new_c = r,c
-                break
-        r,c = new_r,new_c # 위치 업데이트
+        flag = 0
+        route = route.split(' ')
+        
+        if route[0] == 'N':
+            for i in range(int(route[1])):
+                nr = start_r + dr[0]
+                nc = start_c + dc[0]
+                
+                if check(nr,nc):
+                    start_r,start_c = nr,nc
+                else:
+                    flag += 1
+                
+        if route[0] == 'S':
+            for i in range(int(route[1])):
+                nr = start_r + dr[1]
+                nc = start_c + dc[1]
+                
+                if check(nr,nc):
+                    start_r,start_c = nr,nc
+                else:
+                    flag += 1
+                    
+        if route[0] == 'W':
+            for i in range(int(route[1])):
+                nr = start_r + dr[2]
+                nc = start_c + dc[2]
+                
+                if check(nr,nc):
+                    start_r,start_c = nr,nc
+                else:
+                    flag += 1
+                    
+        if route[0] == 'E':
+            for i in range(int(route[1])):
+                nr = start_r + dr[3]
+                nc = start_c + dc[3]
+                
+                if check(nr,nc):
+                    start_r,start_c = nr,nc
+                else:
+                    flag += 1
+        
+        if flag >= 1:
+            start_r,start_c = copy_r,copy_c
+        else:
+            copy_r,copy_c = start_r,start_c
+        
+    
 
-    return [r,c]
+    return [start_r,start_c]
