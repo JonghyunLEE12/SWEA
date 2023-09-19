@@ -1,10 +1,22 @@
 def solution(babbling):
-    count = 0
-    babble = [ "aya", "ye", "woo", "ma" ]
-    for utter in babbling:
-        for text in babble:
-            if text * 2 not in utter:
-                utter = utter.replace(text, ' ')
-        if utter.strip() == '':
-            count += 1
-    return count
+    ans = 0
+    
+    baby = ['aya','ye','woo','ma']
+    
+    rlt = []
+    
+    def dfs(target,prev_word):
+        if len(target) == 0:
+            return 1
+        
+        count = 0
+        for sound in baby:
+            if target.startswith(sound) and prev_word != sound:
+                count += dfs(target[len(sound):],sound)
+        return count
+    
+    for target in babbling:
+        rlt.append(dfs(target,""))
+                
+    return sum(rlt)
+
