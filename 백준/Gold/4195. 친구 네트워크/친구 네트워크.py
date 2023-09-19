@@ -10,36 +10,33 @@ Betty Wilma
 Barney Betty
 '''
 
+tc = int(input())
 
-T = int(input())
-
-
-def find(target):
-    if parents[target] == target:
-        return target
+def find(t):
+    if parents[t] == t:
+        return t
     else:
-        y = find(parents[target])
-        parents[target] = y
+        y = find(parents[t])
+        parents[t] = y
         return y
 
 
 def union(a,b):
-
     a = find(a)
     b = find(b)
 
     if a != b:
-        parents[a] = b            
-        number[b] += number[a]          
+        parents[a] = b
+        number[b] += number[a]
     
     print(number[b])
 
-for tc in range(T):
-    f = int(input())
-
+for _ in range(tc):
+    n = int(input())
+    
     parents , number = {} , {}
 
-    for i in range(f):
+    for i in range(n):
         a,b = input().split(' ')
 
         if a not in parents:
@@ -49,5 +46,5 @@ for tc in range(T):
         if b not in parents:
             parents[b] = b
             number[b] = 1
-        
+
         union(a,b)
