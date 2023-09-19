@@ -3,27 +3,26 @@
 '''
 
 n,m = map(int,input().split(' '))
+visited = [0]*(n+1)
 
-numbers = [x for x in range(1,n+1)]
-visited = [0]*n
 
-def dfs(arr):
+def dfs(arr,start):
     if len(arr) == m:
         print(*arr)
         return
-    
-    for i in range(n):
+    for i in range(1,n+1):
         if visited[i] == 0:
-            arr.append(numbers[i])
             visited[i] = 1
-            dfs(arr)
-            visited[i] = 0
+            arr.append(i)
+            dfs(arr,i)
             arr.pop()
+            visited[i] = 0
 
-for i in range(n):
+
+for i in range(1,n+1):
     if visited[i] == 0:
-        arr = [numbers[i]]
         visited[i] = 1
-        dfs(arr)
-        visited[i] = 0
+        arr = [i]
+        dfs(arr,i)
         arr.pop()
+        visited[i] = 0
