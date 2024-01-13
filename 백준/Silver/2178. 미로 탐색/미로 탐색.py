@@ -36,6 +36,6 @@ def bfs(r,c):
                     visited[nr][nc] = visited[row][col] + 1
 
     
-    return visited[n-1][m-1]
 
-print(bfs(0,0))
+bfs(0,0)
+print(visited[n-1][m-1])
