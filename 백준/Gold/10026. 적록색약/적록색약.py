@@ -9,54 +9,62 @@ RRRRR
 
 from collections import deque
 
+n = int(input())
+matrix = [ list(input()) for _ in range(n) ]
+visited = [[0] * len(matrix[0]) for _ in range(n) ]
 
-# 델타 상하좌우
+# 델타 상 하 좌 우
 dr = [-1,1,0,0]
 dc = [0,0,-1,1]
 
-def bfs(row,col):
+
+
+def bfs(r,c,mark,visited):
     queue = deque()
-    queue.append((row,col))
+    queue.append([r,c])
+    visited[r][c] = 1
+
     while queue:
-        r,c = queue.popleft()
-        for i in range(4):
-            nr = r + dr[i]
-            nc = c + dc[i]
-            if 0 <= nr < n and 0 <= nc < n:
-                if visited[nr][nc] == 0 and matrix[r][c] == matrix[nr][nc]:
+        row,col = queue.popleft()
+        for i in range(len(dr)):
+            nr = row + dr[i]
+            nc = col + dc[i]
+
+            if 0 <= nr < len(matrix) and 0 <= nc < len(matrix[0]):
+                if visited[nr][nc] == 0 and matrix[nr][nc] == mark:
+                    queue.append([nr,nc])
                     visited[nr][nc] = 1
-                    queue.append((nr,nc))
 
-n = int(input())
-matrix = [ list(map(str,input().rstrip(' '))) for _ in range(n)]
-visited = [[0]*n for _ in range(n)]
-# 일반인
+
+
+
+
+# 일반인 구역
+
 cnt = 0
-for i in range(n):
-    for j in range(n):
-        if visited[i][j] == 0:
-            visited[i][j] = 1
-            bfs(i,j)
+
+for r in range(len(matrix)):
+    for c in range(len(matrix[0])):
+        if visited[r][c] == 0:
+            bfs(r,c,matrix[r][c],visited)
             cnt += 1
+            
 
-## 적녹색양은 r,g 구분 못해
+# 적녹색맹 변경
 
-for a in range(n):
-    for b in range(n):
-        if matrix[a][b] == 'G':
-            matrix[a][b] = 'R'
+for r in range(len(matrix)):
+    for c in range(len(matrix[0])):
+        if matrix[r][c] == 'R':
+            matrix[r][c] = 'G'
 
 
-# 적녹색약 방문 새로 만들기
-# cnt 도 새로 만들어야지
+r_visited = [ [0]*len(matrix[0]) for _ in range(n) ]
+r_cnt = 0
 
-visited = [[0]*n for _ in range(n)]
-b_cnt = 0
-for x in range(n):
-    for y in range(n):
-        if visited[x][y] == 0:
-            visited[x][y] = 1
-            bfs(x,y)
-            b_cnt += 1
+for r in range(len(matrix)):
+    for c in range(len(matrix[0])):
+        if r_visited[r][c] == 0:
+            bfs(r,c,matrix[r][c],r_visited)
+            r_cnt += 1
 
-print(cnt,b_cnt)
+print(cnt,r_cnt)
